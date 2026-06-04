@@ -1,0 +1,14 @@
+<resources>
+    <color name="sand">#FFD19A</color>
+    <color name="sand_dark">#C4A87C</color>
+    <color name="glass">#87CEEB</color>
+    <color name="glass_hot">#FF6347</color>
+    <color name="machine_body">#6B6B6B</color>
+    <color name="bg_factory">#2C2C2C</color>
+    <color name="bg_floor">#3A3A3A</color>
+    <color name="text_white">#FFFFFFFF</color>
+    <color name="text_gold">#FFD700</color>
+    <color name="btn_upgrade">#4CAF50</color>
+    <color name="btn_upgrade_text">#FFFFFF</color>
+    <color name="resource_icon">#FFE082</color>
+</resources>
