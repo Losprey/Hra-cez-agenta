@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.View
-import kotlin.math.min
 import kotlin.math.roundToInt
 
 class GameView(context: Context, val engine: GameEngine) : View(context) {

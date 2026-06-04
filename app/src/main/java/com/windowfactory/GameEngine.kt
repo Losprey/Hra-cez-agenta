@@ -83,7 +83,7 @@ class GameEngine {
     // Predaj surovín
     fun sellSand(): Boolean {
         if (piesok.amount >= 1.0) {
-            val sellAmount = min(piesok.amount, 100.0)
+            val sellAmount = Math.min(piesok.amount, 100.0)
             piesok.amount -= sellAmount
             score += sellAmount
             return true
