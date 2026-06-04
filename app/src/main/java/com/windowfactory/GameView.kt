@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.View
+import kotlin.math.min
 import kotlin.math.roundToInt
 
 class GameView(context: Context, val engine: GameEngine) : View(context) {
@@ -101,6 +102,24 @@ class GameView(context: Context, val engine: GameEngine) : View(context) {
             prodStr += "  |  🔥 ${engine.formatNumber(engine.pec.speed)}"
         }
         canvas.drawText(prodStr, 20f, 130f, paintSmall)
+
+        // Sell buttons
+        val sellW = 80f
+        val sellH = 40f
+        val sellY = 140f
+        paintBtnText.textSize = 20f
+
+        // Sell piesok
+        val sellSandX = 20f
+        val canSellSand = engine.piesok.amount >= 1.0
+        val sandBtnPaint = if (canSellSand) paintBtn else paintBtnLocked
+        canvas.drawRoundRect(sellSandX, sellY, sellSandX + sellW, sellY + sellH, 10f, 10f, sandBtnPaint)
+        canvas.drawText("💰", sellSandX + 28f, sellY + 28f, paintBtnText)
+        buttons.add(Button(sellSandX, sellY, sellW, sellH, "sell", "sell_sand", 0))
+
+        paintSmall.textSize = 18f
+        paintSmall.color = Color.LTGRAY
+        canvas.drawText("${engine.formatNumber(1.0)} piesku", sellSandX + sellW + 8f, sellY + 28f, paintSmall)
     }
 
     private fun drawMachine(canvas: Canvas, w: Float, y: Float, h: Float, machine: Machine, idx: Int) {
@@ -276,6 +295,9 @@ class GameView(context: Context, val engine: GameEngine) : View(context) {
                             if (btn.machineIdx < machines.size) {
                                 engine.unlockMachine(machines[btn.machineIdx])
                             }
+                        }
+                        "sell_sand" -> {
+                            engine.sellSand()
                         }
                     }
                     return true
