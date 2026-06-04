@@ -249,7 +249,7 @@ class GameView(context: Context, val engine: GameEngine) : View(context) {
         }
 
         // Sklo vo vnútri (level zvyšuje lesk)
-        val glassPaint = Paint().apply { color = Color.rgb(100, 200, 255, 80) }
+        val glassPaint = Paint().apply { color = Color.argb(80, 100, 200, 255) }
         canvas.drawRect(x + 15f, y + 15f, x + 65f, y + 40f, glassPaint)
     }
 
