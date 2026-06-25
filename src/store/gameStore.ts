@@ -137,6 +137,32 @@ export const useGameStore = create<GameState>()(
     }),
     {
       name: 'window-empire-storage',
+      // Provide custom storage implementation to catch errors safely
+      storage: {
+        getItem: (name) => {
+          try {
+            const str = localStorage.getItem(name);
+            return str ? JSON.parse(str) : null;
+          } catch (e) {
+            console.warn('localStorage is not available', e);
+            return null;
+          }
+        },
+        setItem: (name, value) => {
+          try {
+            localStorage.setItem(name, JSON.stringify(value));
+          } catch (e) {
+            console.warn('localStorage is not available', e);
+          }
+        },
+        removeItem: (name) => {
+          try {
+            localStorage.removeItem(name);
+          } catch (e) {
+            console.warn('localStorage is not available', e);
+          }
+        },
+      },
     }
   )
 );
